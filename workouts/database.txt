@@ -1,0 +1,32 @@
+
+### To view
+ 1-show database
+ 2-show collections
+ 3-db.dropDatabase()
+
+//create
+db.users.insertOne({name:"Ravi"});
+db.users.insertMany([{age:19},{age:10}]);
+
+// Read
+db.users.find();
+db.users.find({name:"Ravi"});
+db.users.findOne({name:"Ravi"});
+db.users.countDocuments({name:"Ravi"});
+
+// Update
+db.users.updateOne({age:19},{$set:{age:21}});
+db.users.updateMany({},{$rename:{age:"years"}})
+
+db.users.find().limit(2)
+db.users.find().skip(4)
+
+// Delete
+db.users.deleteOne({age:21});
+
+// Query Operators
+db.users.find({name:{$eq:"Ravi"}}); // eq -> equal to
+
+db.users.find({age:{$gt:12}}); // gt -> greater than
+
+db.users.find({$and:[{age:12},{name:"Ravi"}]})
