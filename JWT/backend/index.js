@@ -54,7 +54,8 @@ app.post('/api/register', async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         const user = new User({ username, password: hashedPassword });
         await user.save();
-        res.status(201).send('User Registered Successfully');
+        const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' });
+        res.status(201).json({ token });
     } catch (error) {
         res.status(400).send('Registration Failed: Username may already exist');
     }
@@ -123,5 +124,5 @@ app.delete('/api/deletefood/:id', verifyToken, async (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`🚀 Server running at http://localhost:${port}`);
+    console.log(`Server running at http://localhost:${port}`);
 });

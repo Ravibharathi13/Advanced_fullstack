@@ -13,8 +13,8 @@ app.use(express.json());
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URL)
-    .then(() => console.log("✔ MongoDB Connected Successfully"))
-    .catch(err => console.log("❌ MongoDB Connection Error:", err));
+    .then(() => console.log("MongoDB Connected Successfully"))
+    .catch(err => console.log("MongoDB Connection Error:", err));
 
 // Insert Food Item
 app.post('/insert', async (req, res) => {
